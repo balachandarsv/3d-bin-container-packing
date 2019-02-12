@@ -338,40 +338,6 @@ public class LargestAreaFitFirstPackager extends Packager {
 				freeSpaces[3] = top;
 			}
 		}
-
-		if(freespace.getWidth() >= used.getDepth() && freespace.getDepth() >= used.getWidth()) {
-			// if D is empty, then it is sufficient to work with C and the other way around
-
-			// D
-			if(freespace.getWidth() > used.getDepth()) {
-				Space right = new Space(
-						freespace.getWidth() - used.getDepth(), freespace.getDepth(), freespace.getHeight(),
-						freespace.getX() + used.getDepth(), freespace.getY(), freespace.getHeight()
-						);
-				Space rightRemainder = new Space(
-						used.getDepth(), freespace.getDepth() - used.getWidth(), freespace.getHeight(),
-					freespace.getX(), freespace.getY() + used.getWidth(), freespace.getZ()
-						);
-				right.setRemainder(rightRemainder);
-				rightRemainder.setRemainder(right);
-				freeSpaces[2] = right;
-			}
-
-			// C
-			if(freespace.getDepth() > used.getWidth()) {
-				Space top = new Space(
-						freespace.getWidth(), freespace.getDepth() - used.getWidth(), freespace.getHeight(),
-					freespace.getX(), freespace.getY() + used.getWidth(), freespace.getHeight()
-						);
-				Space topRemainder = new Space(
-						freespace.getWidth() - used.getDepth(), used.getWidth(), freespace.getHeight(),
-						freespace.getX() + used.getDepth(), freespace.getY(), freespace.getZ()
-						);
-				top.setRemainder(topRemainder);
-				topRemainder.setRemainder(top);
-				freeSpaces[3] = top;
-			}
-		}
 		return freeSpaces;
 	}
 
